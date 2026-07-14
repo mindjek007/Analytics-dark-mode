@@ -1,0 +1,132 @@
+html:not(img, country-flag) {
+  filter: invert(0.92) hue-rotate(180deg);
+  background-color: #111;
+}
+
+/* .suite-gaia-header-logo, .suite-gaia-user-image {
+  filter: invert(1);
+} */
+
+img, country-flag > div {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+/* ----- MAP FIX: Dark mode for Google Maps in real-time view -----
+   Google Maps loads tile images (<img src="https://maps.googleapis.com/maps/vt?pb=...">)
+   These <img> tiles get double-inverted by the global img rule below:
+     Step 1: img自身的 filter: invert(1) → 完全反转
+     Step 2: html父级 filter: invert(0.92) → 再反转92%
+     = 最终仍偏亮 (~70% 亮度)
+   
+   Correct fix: map tile images should have NO filter of their own,
+   so they only get the single invert(0.92) from <html> → properly dark. */
+
+/* Map tile images from Google Maps API — remove self-filter, inherit only parent invert(0.92) */
+img[src*="googleapis"],
+img[src*="khms"],
+img[src*="mt"],
+img[src*="gstatic"],
+img[src*="google-maps"],
+img[src*="maps.gstatic"] {
+  filter: none !important;
+}
+
+/* Map tile images with class-based selectors (backup) */
+img[class*="gm-tile"],
+img[class*="map-tile"],
+img[class*="tile"],
+img[class*="Tile"] {
+  filter: none !important;
+}
+
+/* Map containers — ensure dark background while tiles load */
+[class*="bubble-map"],
+[class*="base-geo-map"],
+[class*="map-container"],
+[class*="GeoChart"],
+[class*="geo-chart"] {
+  background-color: #1a1a2e !important;
+}
+
+/* Map inner div with hardcoded light background rgb(248, 249, 250) — force dark */
+div[style*="background-color: rgb(248, 249, 250)"],
+div[style*="background-color: rgb(248,249,250)"] {
+  background-color: #1a1a2e !important;
+}
+
+/* Zoom controls (inline SVGs) — they get parent invert and look fine, 
+   but the button backgrounds need darkening */
+.gm-control-active,
+.gm-fullscreen-control,
+button[title*="Zoom"],
+button[aria-label*="Zoom"] {
+  background-color: #2a2a48 !important;
+  border-color: #3a3a58 !important;
+}
+
+/* Google Maps attribution bar — darken background */
+.gm-style-cc div[style*="background-color"],
+.gm-style-cc > div > div {
+  background-color: #2a2a48 !important;
+}
+
+.gm-style-cc,
+.gm-style-cc span,
+.gm-style-cc a {
+  color: #b0b0cc !important;
+}
+
+/* Canvas markers (animated dots) — inherit parent invert, no extra filter needed */
+canvas[width][height][draggable="false"] {
+  filter: none !important;
+}
+
+/* ----- END MAP FIX ----- */
+
+.tg-dualmarker {
+  border-bottom: none;
+  border-left: none;
+  border-right: none;
+  border-style: dotted;
+}
+
+.wk-daynames th * {
+  font-size: 22px;
+  padding: 10px;
+}
+
+div.date-top {
+  font-size: 22px;
+}
+
+div.tg-time-pri {
+  border-width: 0;
+  text-transform: uppercase;
+  transform: translateY(-0.75em);
+}
+
+md-card {
+  box-shadow: none !important;
+}
+
+#cnt,
+#rcnt,
+md-toolbar {
+  background-color: #fff;
+}
+
+a.fl {
+  color: #387be0;
+}
+
+a._Eu.irg-footer {
+  color: #4e84e0;
+}
+
+h3.r a {
+  color: #9c802d;
+}
+
+ga-header, header {
+  background: white;
+}

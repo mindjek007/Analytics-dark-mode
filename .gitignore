@@ -1,0 +1,12 @@
+# Screenshots source files (generated images for store listing)
+Screenshots/chrome_*.jpg
+Screenshots/chrome_*.png
+Screenshots/gen_*.py
+
+# Build artifact
+analytics-dark-mode.zip
+
+# OS files
+Thumbs.db
+.DS_Store
+*.swp
